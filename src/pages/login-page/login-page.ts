@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { MainPage } from '../main-page/main-page';
 /*
   Generated class for the LoginPage page.
 
@@ -21,6 +22,11 @@ export class LoginPage {
 
   loginUser(event){
     console.log("login");
+    this.switchPage();
+  }
+
+  switchPage() {
+    this.navCtrl.push(MainPage, null, {animate: false});
   }
 
 }
