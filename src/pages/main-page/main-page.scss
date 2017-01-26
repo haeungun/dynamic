@@ -9,11 +9,29 @@ page-main-page {
 }
 
 .timetable {
+    position: static;
     padding-top: 5.5%;
     padding-left: 4.7%;
+    padding-right: 4.7%;
 }
 
 .list {
-    padding-top: 1.6%;
+    position: relative;
+    top: 1.6%;
     padding-left: 4.7%;
+}
+
+.menu {
+}
+
+.schedule {
+
+}
+
+.setting {
+
+}
+
+.info {
+
 }
