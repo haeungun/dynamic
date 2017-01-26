@@ -6,7 +6,7 @@ page-main-page {
     margin: 0;
     line-height: 50px;
     font-weight: 800;
-    font-size: 40px;
+    font-size: 4.0rem;
     color:#FFFFFF;
     font-family: 'Roboto-Light';
     opacity: 1;
@@ -17,14 +17,15 @@ page-main-page {
     margin: 0;
     line-height: 40px;
     font-weight: 800;
-    font-size: 35px;
+    font-size: 3.0rem;
     color:#FFFFFF;
     font-family: 'Roboto-Light';
     opacity: 1;
     max-width: 200px;
 }
 .main-view {
-    background-image: url('../../assets/img/login.jpg');
+    background-image: url('../assets/img/login.jpg');
+    -webkit-background-image: url('../assets/img/LoginBackground.png');
     background-size:cover;
     height: 100vh;
     width: 100vw;
@@ -87,6 +88,10 @@ page-main-page {
 }
 
 .dev_info {
+    
+    background-image: url('../assets/icon/information.png');
+    -webkit-background-image: url('../assets/icon/information.png');
+    background-size:cover;
     background-color: rgba(255,255,255, 0.35);
     width: 33vw;
     height: 15.6vh;
