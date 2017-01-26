@@ -2,15 +2,20 @@ page-main-page {
 
 }
 
+@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
+
 .menu_font{
     margin: 0;
     line-height: 50px;
     font-weight: 800;
-    font-size: 4.0rem;
+    font-size: 3.0rem;
     color:#FFFFFF;
-    font-family: 'Roboto-Light';
+    font-family: 'Jeju Gothic', sans-serif;
     opacity: 1;
     max-width: 200px;
+    position: relative;
+    top: 20%;
+    left: 5%;
 }
 
 .my_time_table_font{
@@ -19,9 +24,12 @@ page-main-page {
     font-weight: 800;
     font-size: 3.0rem;
     color:#FFFFFF;
-    font-family: 'Roboto-Light';
+    font-family: 'Jeju Gothic', sans-serif;
     opacity: 1;
     max-width: 200px;
+    position: relative;
+    top: 20%;
+    left: 5%;
 }
 .main-view {
     background-image: url('../assets/img/login.jpg');
@@ -49,6 +57,11 @@ page-main-page {
     width: 89vw;
     margin-bottom: 1.6vh;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    transition : box-shadow 0.4s ease;
+}
+
+.timetable:active {
+    box-shadow: 0px 40px 30px rgba(0,0,0,0.7);
 }
 
 .my_list {
@@ -59,25 +72,38 @@ page-main-page {
     margin-right: 1.6vh;
     float:left;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    transition : box-shadow 0.4s ease;
 }
 
+.my_list:active {
+    box-shadow: 0px 40px 30px rgba(0,0,0,0.7);
+}
 .food_menu {
     background-color: rgba(192,108,132,0.35);
     height: 24.25vh;
-    width: 43vw;
+    width: 42vw;
     float:right;
     margin-bottom: 1.6vh;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    transition : box-shadow 0.4s ease;
+}
+
+.food_menu:active {
+    box-shadow: 0px 40px 30px rgba(0,0,0,0.7);
 }
 
 .schedule {
     background-color: rgba(248,177,149,0.35);
     height: 22.5vh;
-    width: 43vw;
+    width: 42vw;
     float:right;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    transition : box-shadow 0.4s ease;
 }
 
+.schedule:active {
+    box-shadow: 0px 40px 30px rgba(0,0,0,0.7);
+}
 
 .setting_menu {
     background-color: rgba(53,92,125,0.35);
@@ -85,16 +111,27 @@ page-main-page {
     width: 52vw;
     float:left;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    transition : box-shadow 0.4s ease;
+}
+
+.setting_menu:active {
+    box-shadow: 0px 40px 30px rgba(0,0,0,0.7);
 }
 
 .dev_info {
-    
     background-image: url('../assets/icon/information.png');
     -webkit-background-image: url('../assets/icon/information.png');
-    background-size:cover;
+    background-size:60%;
+    background-repeat:no-repeat;
+    background-position: center; 
     background-color: rgba(255,255,255, 0.35);
-    width: 33vw;
+    width: 32vw;
     height: 15.6vh;
     float:right;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    transition : box-shadow 0.4s ease;
+}
+
+.dev_info:active {
+    box-shadow: 0px 40px 30px rgba(0,0,0,0.7);
 }
