@@ -1,28 +1,22 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-import { TimetablePage } from '../timetable-page/timetable-page';
-
 /*
-  Generated class for the MainPage page.
+  Generated class for the TimetablePage page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-main-page',
-  templateUrl: 'main-page.html'
+  selector: 'page-timetable-page',
+  templateUrl: 'timetable-page.html'
 })
-export class MainPage {
+export class TimetablePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MainPagePage');
-  }
-
-  switchTimetablePage(event){
-    this.navCtrl.push(TimetablePage, null, {animate: false});
+    console.log('ionViewDidLoad TimetablePagePage');
   }
 
 }
