@@ -2,7 +2,8 @@ page-login-page {
 }
 
 .login-view {
-    background-image: url('../../assets/img/login.jpg');
+    background-image: url('../assets/img/login.jpg');
+    -webkit-background-image: url('../assets/img/LoginBackground.png');
     background-size:cover;
     height: 100vh;
     width: 100vw;
