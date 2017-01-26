@@ -1,2 +1,18 @@
 page-login-page {
 }
+
+.login-view {
+    background-image: url('../../assets/img/login.jpg');
+    background-size:cover;
+    height: 100vh;
+    width: 100vw;
+}
+
+.icon-badge {
+    margin-right: 5px;
+}
+
+.register {
+    color: white;
+    text-align: center;
+}

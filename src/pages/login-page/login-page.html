@@ -9,16 +9,22 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="login-view">
 <ion-list>
   <ion-item>
-    <ion-input type="text" placeholder="Username"></ion-input>
+    <ion-icon name="contact" item-left class="icon-badge"></ion-icon>
+    <ion-input type="text" placeholder="Email"></ion-input>
   </ion-item>
   <ion-item>
+    <ion-icon name="key" item-left class="icon-badge"></ion-icon>
     <ion-input type="password" placeholder="Password"></ion-input>
   </ion-item>
 </ion-list>
 <div padding>
-  <button ion-button block (click)="loginUser($event)">LOGIN</button>
+  <button ion-button block color="dark" (click)="loginUser($event)">로그인</button>
+  <button ion-button block (click)="loginUser($event)">
+    <ion-icon name="logo-facebook" item-left class="icon-badge"></ion-icon>  페이스북으로 접속하기 
+  </button>
+  <p class="register"> 계정이 없으신가요? </p>
 </div>
 </ion-content>
