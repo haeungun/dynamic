@@ -7,12 +7,14 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login-page/login-page';
 import { MainPage} from '../pages/main-page/main-page';
+import { TimetablePage } from '../pages/timetable-page/timetable-page';
 
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
     MainPage,
+    TimetablePage,
     AboutPage,
     ContactPage,
     HomePage,
@@ -26,6 +28,7 @@ import { MainPage} from '../pages/main-page/main-page';
     MyApp,
     LoginPage,
     MainPage,
+    TimetablePage,
     AboutPage,
     ContactPage,
     HomePage,

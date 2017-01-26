@@ -6,16 +6,17 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>MAIN</ion-title>
-  </ion-navbar>
-
 </ion-header>
   
-<ion-content>
-  <img src="img/timetable.gif">  
-  <img src="img/list.gif">
+<ion-content class="background">
+  <div class="timetable">
+    <img src="img/timetable.gif" (click)="switchTimetablePage($event)"> 
+  </div> 
+  <div class="list">
+    <img src="img/list.gif">
+  </div>
   <img src="img/menu.gif">
+  <img src="img/schedule.gif">
   <img src="img/setting.gif">
   <img src="img/info.gif">
 </ion-content>
