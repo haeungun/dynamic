@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { MainPage } from '../main-page/main-page';
+import { SignUpPage } from '../signup-page/signup-page';
+
 /*
   Generated class for the LoginPage page.
 
@@ -27,6 +29,10 @@ export class LoginPage {
 
   switchPage() {
     this.navCtrl.push(MainPage, null, {animate: false});
+  }
+
+  switchSignUpPage() {
+    this.navCtrl.push(SignUpPage, null, {animate: false});
   }
 
 }
