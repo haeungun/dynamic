@@ -13,11 +13,11 @@
 <ion-list>
   <ion-item>
     <ion-icon name="contact" item-left class="icon-badge"></ion-icon>
-    <ion-input type="text" placeholder="Email"></ion-input>
+    <ion-input type="text" name="email" [(ngModel)]="user.email" placeholder="Email"></ion-input>
   </ion-item>
   <ion-item>
     <ion-icon name="key" item-left class="icon-badge"></ion-icon>
-    <ion-input type="password" placeholder="Password"></ion-input>
+    <ion-input type="password" name="password" placeholder="Password" [(ngModel)]="user.password"></ion-input>
   </ion-item>
 </ion-list>
 <div padding>

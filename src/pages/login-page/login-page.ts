@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
+
+import { AngularFireModule, FirebaseAuth, AuthProviders, AuthMethods } from 'angularfire2';
 
 import { MainPage } from '../main-page/main-page';
 import { SignUpPage } from '../signup-page/signup-page';
@@ -16,15 +18,28 @@ import { SignUpPage } from '../signup-page/signup-page';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  user = { email: '', password: '' };
+
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public auth: FirebaseAuth, 
+              private alertCtrl: AlertController) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPagePage');
   }
 
   loginUser(event){
-    console.log("login");
-    this.switchPage();
+    // console.log("login");
+    // this.switchPage();
+    this.auth.login(this.user, {
+      provider: AuthProviders.Password,
+      method: AuthMethods.Password
+    }).then((authData) => {
+      this.navCtrl.setRoot(MainPage);
+    }).catch((error) => {
+      this.showError(error);
+    })
   }
 
   switchPage() {
@@ -33,6 +48,15 @@ export class LoginPage {
 
   switchSignUpPage() {
     this.navCtrl.push(SignUpPage, null, {animate: false});
+  }
+
+  showError(text) {
+    let prompt = this.alertCtrl.create({
+      title: 'Fail',
+      subTitle: text,
+      buttons: ['OK']
+    });
+    prompt.present();
   }
 
 }
