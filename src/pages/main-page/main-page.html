@@ -10,20 +10,20 @@
   
 <ion-content class="main-view" >
   <div class="grid_menu">
-    <div class="timetable">
-      <div class="menu_font">Timetable</div>
+    <div class="timetable" (click)="switchDocumentPage()">
+      <div class="menu_font">간증문</div>
     </div>
-    <div class="my_list">
-      <div class="my_time_table_font">My Timetables</div>
+    <div class="my_list" (click)="switchAttendancePage()">
+      <div class="my_time_table_font">출석부</div>
     </div>
-    <div class="food_menu">
-      <div class="menu_font">Food</div>
+    <div class="food_menu" (click)="switchNoticePage()">
+      <div class="menu_font">공지사항</div>
     </div>
-    <div class="schedule">
-      <div class="menu_font">Schedule</div>
+    <div class="schedule" (click)="switchSchedulePage()">
+      <div class="menu_font">교회 일정</div>
     </div>
-    <div class="setting_menu">
-      <div class="menu_font">Setting</div>
+    <div class="setting_menu" (click)="switchPage(PhotoPage)">
+      <div class="menu_font">사진</div>
     </div>
     <div class="dev_info">
     </div>

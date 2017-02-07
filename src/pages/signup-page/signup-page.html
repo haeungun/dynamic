@@ -16,6 +16,17 @@
 <ion-content padding>
 
   <ion-list>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Your Name</ion-label>
+      <ion-input type="text" name="name" [(ngModel)]="user.name" placeholder="ex) 김하은"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label color="primary" stacked>Your Birthday</ion-label>
+      <ion-input type="text" name="birth" [(ngModel)]="user.birth" placeholder="ex) 931125"></ion-input>
+    </ion-item>
+
     <ion-item>
       <ion-label color="primary" stacked>Your E-mail</ion-label>
       <ion-input type="email" name="email" [(ngModel)]="user.email" placeholder="ex) songchon@church.com"></ion-input>

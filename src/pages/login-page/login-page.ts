@@ -3,6 +3,7 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { AngularFireModule, FirebaseAuth, AuthProviders, AuthMethods } from 'angularfire2';
 
+import { User } from '../../app/model/user.model';
 import { MainPage } from '../main-page/main-page';
 import { SignUpPage } from '../signup-page/signup-page';
 
@@ -31,7 +32,8 @@ export class LoginPage {
 
   loginUser(event){
     // console.log("login");
-    // this.switchPage();
+    this.switchPage();
+    /*
     this.auth.login(this.user, {
       provider: AuthProviders.Password,
       method: AuthMethods.Password
@@ -40,6 +42,7 @@ export class LoginPage {
     }).catch((error) => {
       this.showError(error);
     })
+    */
   }
 
   switchPage() {
