@@ -46,9 +46,9 @@ page-main-page {
     position: relative;
 }
 
-.timetable {
+.document {
     background-color: rgba(248,177,149,0.35);
-    height: 19vh;
+    height: 17vh;
     width: 89vw;
     margin-bottom: 1.6vh;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
@@ -56,7 +56,7 @@ page-main-page {
 
 .my_list {
     background-color: rgba(246,114,128,0.35);
-    height: 48.5vh;
+    height: 46.5vh;
     width: 43vw;
     margin-bottom: 1.6vh;
     margin-right: 1.6vh;
@@ -64,9 +64,9 @@ page-main-page {
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
 }
 
-.food_menu {
+.notice {
     background-color: rgba(192,108,132,0.35);
-    height: 24.25vh;
+    height: 22.9vh;
     width: 43vw;
     float:right;
     margin-bottom: 1.6vh;
@@ -75,7 +75,7 @@ page-main-page {
 
 .schedule {
     background-color: rgba(248,177,149,0.35);
-    height: 22.5vh;
+    height: 22vh;
     width: 43vw;
     float:right;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
@@ -91,7 +91,6 @@ page-main-page {
 }
 
 .dev_info {
-    
     background-image: url('../assets/icon/information.png');
     -webkit-background-image: url('../assets/icon/information.png');
     background-size:cover;

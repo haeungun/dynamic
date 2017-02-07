@@ -1,20 +1,19 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-import { StatPage } from '../stat-page/stat-page';
 /*
-  Generated class for the AttendancePage page.
+  Generated class for the StatPage page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-attendance-page',
-  templateUrl: 'attendance-page.html'
+  selector: 'page-stat-page',
+  templateUrl: 'stat-page.html'
 })
-export class AttendancePage {
+export class StatPage {
 
-public barChartOptions:any = {
+  public barChartOptions:any = {
     scaleShowVerticalLines: false,
     responsive: true
   };
@@ -29,9 +28,6 @@ public barChartOptions:any = {
  
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AttendancePagePage');
-  }
 
   public randomize() {
     // Only Change 3 values
@@ -53,9 +49,8 @@ public barChartOptions:any = {
      * assign it;
      */
   }
-
-   switchStatPage() {
-     this.navCtrl.push(StatPage, null, {animate: false});
-   }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad StatPagePage');
+  }
 
 }
