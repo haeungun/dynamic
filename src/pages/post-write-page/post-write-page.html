@@ -1,0 +1,30 @@
+<!--
+  Generated template for the PostWritePage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>post-write-page</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-label color="primary" fixed>Title</ion-label>
+    <ion-input type="text" name ="title" placeholder="Input title" [(ngModel)]="title"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary" fixed>Content</ion-label>
+    <ion-input type="text" name="body" placeholder="Input content" [(ngModel)]="body"></ion-input>
+  </ion-item>
+
+  <button ion-button block color="dark" (click)="onWritePost()">작성하기</button>
+
+</ion-content>

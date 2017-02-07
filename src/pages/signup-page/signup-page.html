@@ -1,0 +1,48 @@
+<!--
+  Generated template for the SignupPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Welcome to Song-Chon</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Your Name</ion-label>
+      <ion-input type="text" name="name" [(ngModel)]="user.name" placeholder="ex) 김하은"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label color="primary" stacked>Your Birthday</ion-label>
+      <ion-input type="text" name="birth" [(ngModel)]="user.birth" placeholder="ex) 931125"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Your E-mail</ion-label>
+      <ion-input type="email" name="email" [(ngModel)]="user.email" placeholder="ex) songchon@church.com"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Password</ion-label>
+      <ion-input type="password" name="password" [(ngModel)]="user.password" placeholder="●●●●●●"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Password Confirm</ion-label>
+      <ion-input type="password" placeholder="●●●●●●"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <button ion-button block color="dark" (click)="registerUser()">Submit</button>
+
+</ion-content>

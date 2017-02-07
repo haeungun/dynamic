@@ -13,18 +13,18 @@
 <ion-list>
   <ion-item>
     <ion-icon name="contact" item-left class="icon-badge"></ion-icon>
-    <ion-input type="text" placeholder="Email"></ion-input>
+    <ion-input type="text" name="email" [(ngModel)]="user.email" placeholder="Email"></ion-input>
   </ion-item>
   <ion-item>
     <ion-icon name="key" item-left class="icon-badge"></ion-icon>
-    <ion-input type="password" placeholder="Password"></ion-input>
+    <ion-input type="password" name="password" placeholder="Password" [(ngModel)]="user.password"></ion-input>
   </ion-item>
 </ion-list>
 <div padding>
-  <button ion-button block color="dark" (click)="loginUser($event)">로그인</button>
-  <button ion-button block (click)="loginUser($event)">
+  <button ion-button block color="dark" (click)="loginUser()">로그인</button>
+  <button ion-button block (click)="loginUser()">
     <ion-icon name="logo-facebook" item-left class="icon-badge"></ion-icon>  페이스북으로 접속하기 
   </button>
-  <p class="register"> 계정이 없으신가요? </p>
+  <p class="register" (click)="switchSignUpPage()"> 계정이 없으신가요? 회원가입</p>
 </div>
 </ion-content>
