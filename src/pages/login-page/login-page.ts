@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 
-import { AngularFireModule, FirebaseAuth, AuthProviders, AuthMethods } from 'angularfire2';
+import { AngularFireModule, FirebaseAuth, AuthProviders, AuthMethods, FirebaseListObservable } from 'angularfire2';
 
 import { User } from '../../app/model/user.model';
 import { MainPage } from '../main-page/main-page';
@@ -43,6 +43,9 @@ export class LoginPage {
       this.showError(error);
     })
     */
+  }
+
+  showVerse() {
   }
 
   switchPage() {

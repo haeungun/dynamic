@@ -7,6 +7,8 @@ import { SchedulePage } from '../schedule-page/schedule-page';
 import { NoticePage } from '../notice-page/notice-page';
 import { PhotoPage } from '../photo-page/photo-page';
 
+import { VerseService } from '../../app/providers/verse.service';
+
 /*
   Generated class for the MainPage page.
 
@@ -15,13 +17,22 @@ import { PhotoPage } from '../photo-page/photo-page';
 */
 @Component({
   selector: 'page-main-page',
-  templateUrl: 'main-page.html'
+  templateUrl: 'main-page.html',
+  providers: [ VerseService ]
 })
 export class MainPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  verse;
+
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              private service: VerseService) {}
 
   ionViewDidLoad() {
+    this.service.getVerse().subscribe(v => {
+      this.verse = v.val();
+    });
+    console.log(this.verse);
     console.log('ionViewDidLoad MainPagePage');
   }
 

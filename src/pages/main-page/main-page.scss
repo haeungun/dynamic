@@ -50,6 +50,7 @@ page-main-page {
     background-color: rgba(248,177,149,0.35);
     height: 17vh;
     width: 89vw;
+    margin-top: 6vh;
     margin-bottom: 1.6vh;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
 }
@@ -81,7 +82,6 @@ page-main-page {
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
 }
 
-
 .setting_menu {
     background-color: rgba(53,92,125,0.35);
     height: 15.6vh;
@@ -99,4 +99,11 @@ page-main-page {
     height: 15.6vh;
     float:right;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+}
+
+.verse {
+    padding-top: 1vh;
+    color: white;
+    margin-left: 3vh;
+    margin-right: 3vh;
 }
