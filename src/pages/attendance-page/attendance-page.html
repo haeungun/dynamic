@@ -13,20 +13,21 @@
 </ion-header>
 
 <ion-content padding>
-  <button ion-button block color="dark">매봉중 남 (김종원)</button>
-  <button ion-button block color="dark">매봉중 남 (박항규)</button>
-  <button ion-button block color="dark">매봉중 남 (서승의)</button>
-  <button ion-button block color="dark" outline>매봉중 여 (장금옥)</button>
-  <button ion-button block color="dark" outline>매봉중 여 (김하은)</button>
-  <button ion-button block color="dark" outline>매봉중 여 (현민숙)</button>
-  <button ion-button block color="dark">법동중 남 (송치정)</button>
-  <button ion-button block color="dark" outline>법동중 여 (가순인)</button>
-  <button ion-button block color="dark">송촌중 남 (정미리)</button>
-  <button ion-button block color="dark" outline>송촌중 여 (최영미)</button>
-  <button ion-button block color="dark">연합중 남 (이인숙)</button>
-  <button ion-button block color="dark">연합중 남 (심우성)</button>
-  <button ion-button block color="dark" outline>연합중 여 (박은수)</button>
-  <button ion-button block color="dark" outline>연합중 여 (김미진)</button>
+
+  <button ion-button block color="dark" (click)="switchDetailPage()">매봉중 남 (김종원)</button>
+  <button ion-button block color="dark" (click)="switchDetailPage()">매봉중 남 (박항규)</button>
+  <button ion-button block color="dark" (click)="switchDetailPage()">매봉중 남 (서승의)</button>
+  <button ion-button block color="dark" outline (click)="switchDetailPage()">매봉중 여 (장금옥)</button>
+  <button ion-button block color="dark" outline (click)="switchDetailPage()">매봉중 여 (김하은)</button>
+  <button ion-button block color="dark" outline (click)="switchDetailPage()">매봉중 여 (현민숙)</button>
+  <button ion-button block color="dark" (click)="switchDetailPage()">법동중 남 (송치정)</button>
+  <button ion-button block color="dark" outline (click)="switchDetailPage()">법동중 여 (가순인)</button>
+  <button ion-button block color="dark" (click)="switchDetailPage()">송촌중 남 (정미리)</button>
+  <button ion-button block color="dark" outline (click)="switchDetailPage()">송촌중 여 (최영미)</button>
+  <button ion-button block color="dark" (click)="switchDetailPage()">연합중 남 (이인숙)</button>
+  <button ion-button block color="dark" (click)="switchDetailPage()">연합중 남 (심우성)</button>
+  <button ion-button block color="dark" outline (click)="switchDetailPage()">연합중 여 (박은수)</button>
+  <button ion-button block color="dark" outline (click)="switchDetailPage()">연합중 여 (김미진)</button>
   <button ion-button block (click)="switchStatPage()">출석 현황</button>
 
 </ion-content>

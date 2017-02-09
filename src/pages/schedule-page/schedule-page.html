@@ -7,12 +7,44 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>schedule-page</ion-title>
+    <ion-title>Calendar</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+
+  <ion-grid class="calendar">   
+    <p class="calendar_title">{{ current | date: 'MMM yyyy' }}</p>    
+    <ion-row class="calendar-header-row">
+      <ion-col class="center calendar-header-col" width-14 *ngFor="let head of wHeadShort">
+        <b>{{ head }}</b>
+      </ion-col>
+    </ion-row>
+    <ion-row class="calendar-row" *ngFor="let week of month; let i = index;">
+      <ion-col class="center calendar-col" width-14 *ngFor="let day of week" (click)="selectDate(day)"
+               [class.today]="isToday(day)" 
+               [class.diff-month]="diffMonth(day)">{{ toDate(day) }}
+      </ion-col>
+    </ion-row>
+    <ion-row class="calendar-last-row">
+      <ion-col width-80>
+        {{ current | date: 'EEEE, MMM dd yyyy' }}
+      </ion-col>
+      <ion-col width-10 (click)="previousMonth()">
+        <ion-icon name="ios-arrow-back"></ion-icon>
+      </ion-col>
+      <ion-col width-10 class="right-arrow"  (click)="nextMonth()">
+        <ion-icon name="ios-arrow-forward"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <button ion-button color="light">일정삭제</button>
+  <button ion-button color="dark">일정추가</button>
+  <ion-list no-lines class="schedule_list">
+    <ion-item>일정1</ion-item>
+    <ion-item>일정2</ion-item>
+  </ion-list>
 
 </ion-content>

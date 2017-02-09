@@ -14,16 +14,14 @@
 
 <ion-content padding>
 <div>
-  <div style="display: block">
+  <div class="chart" style="display: block">
     <canvas baseChart
             [datasets]="barChartData"
             [labels]="barChartLabels"
             [options]="barChartOptions"
             [legend]="barChartLegend"
             [chartType]="barChartType"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)"></canvas>
+            [colors]="barColors"></canvas>
   </div>
-  <button (click)="randomize()">Update</button>
 </div>
 </ion-content>
