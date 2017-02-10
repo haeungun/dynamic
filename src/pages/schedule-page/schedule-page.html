@@ -16,7 +16,7 @@
 <ion-content>
 
   <ion-grid class="calendar">   
-    <p class="calendar_title">{{ current | date: 'MMM yyyy' }}</p>    
+    <p class="calendar_title">{{ current | date: 'yyyy. MMM' }}</p>    
     <ion-row class="calendar-header-row">
       <ion-col class="center calendar-header-col" width-14 *ngFor="let head of wHeadShort">
         <b>{{ head }}</b>
@@ -30,7 +30,7 @@
     </ion-row>
     <ion-row class="calendar-last-row">
       <ion-col width-80>
-        {{ current | date: 'EEEE, MMM dd yyyy' }}
+        {{ today | date: 'MMM dd, EEEE' }}
       </ion-col>
       <ion-col width-10 (click)="previousMonth()">
         <ion-icon name="ios-arrow-back"></ion-icon>
@@ -40,11 +40,11 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-input type="text" class="schedule-input" placeholder="일정을 입력하세요."></ion-input>
+  <button ion-button color="dark" class="schedule-input-button" (click)="createEvent()">일정추가</button>
   <button ion-button color="light">일정삭제</button>
-  <button ion-button color="dark">일정추가</button>
-  <ion-list no-lines class="schedule_list">
-    <ion-item>일정1</ion-item>
-    <ion-item>일정2</ion-item>
+  <ion-list no-lines class="schedule-list" *ngFor="let event of events">
+    <ion-item>{{ day.event }}</ion-item>
   </ion-list>
 
 </ion-content>

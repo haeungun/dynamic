@@ -45,7 +45,8 @@ export class MainPage {
   }
 
   switchSchedulePage() {
-    this.navCtrl.push(SchedulePage, null, {animate: false});
+    let day = new Date(); 
+    this.navCtrl.push(SchedulePage, {today: day}, {animate: false});
   }
 
   switchNoticePage() {

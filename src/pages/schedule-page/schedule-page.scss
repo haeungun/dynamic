@@ -9,7 +9,7 @@ page-schedule-page {
 }      
 
 .calendar_title {
-    font-size: calc(0.75em + 1vmin);
+    font-size: calc(1em + 1vmin);
     font-weight: bold;
     color: #585D5A;
     text-align: center;
@@ -54,15 +54,27 @@ page-schedule-page {
 .diff-month {
     background-color: #E1E1E1;
     color: #BCC2C6;
-} 
+}
 
-.schedule_list {
+.selected-day {
+    background-color: #5CD6D6;
+    color: #FFFFFF;
+}
+
+.schedule-list {
     padding-top: 3vh; 
     padding-left: 3vh;
     color: #585D5A;
     font-size: calc(0.75em + 1vmin);
 }
 
-.schedule_add {
-    align-self: right;
+.schedule-input {
+    padding-left: 5%;
+    width: 65%;
+    float: left;
+}
+
+.schedule-input-button {
+    width: 30%;
+    float: left;
 }

@@ -19,7 +19,7 @@ import { User } from '../../app/model/user.model';
 
 export class SignUpPage {
 
-  user = { email: '', password:'', name: '', birth: '', uid: '', tel:'' };
+  user = { email: '', password:'', name: '', birth: '', uid: '', tel:'', role: '', class: ''};
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,

@@ -24,14 +24,18 @@ export class SchedulePage {
   month: Array<number>;
   current: Date;
   today: Date;
-  wHeadShort: string[] = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+  wHeadShort: string[] = ['일', '월', '화', '수', '목', '금', '토'];
   wHeadMed: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   previousDay: any;
   selectedDay: any;
+  selectedDate: Date;
   
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-      this.today = new Date();
+      
+      this.today = navParams.get("today");
+      console.log("test:" + this.today);
       this.current = new Date();
+      this.selectedDate = new Date();
   }
 
   ionViewDidLoad() {
@@ -151,17 +155,13 @@ export class SchedulePage {
     this.monthRender(this.current.toISOString());
   }
 
-  selectDay(day: any) {
-    day.selected = true;
-    this.selectedDay = day;
-    if (this.previousDay) {
-      this.previousDay.selected = false;
-    }  
-    this.previousDay = day;
-    console.log(day.events);
-  }
-  
   selectDate(day) {
+    this.selectedDate = day.day;
     console.log(day);
+    this.navCtrl.push(SchedulePage, {today: day.day}, {animate: false});
+  }
+
+  createEvent(day) {
+    
   }
 }
