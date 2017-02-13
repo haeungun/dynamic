@@ -1,6 +1,8 @@
 import { Component, Input, Renderer, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { MainPage } from '../main-page/main-page';
+
 /*
   Generated class for the SchedulePage page.
 
@@ -31,11 +33,10 @@ export class SchedulePage {
   selectedDate: Date;
   
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-      
       this.today = navParams.get("today");
-      console.log("test:" + this.today);
       this.current = new Date();
       this.selectedDate = new Date();
+      
   }
 
   ionViewDidLoad() {
@@ -106,11 +107,11 @@ export class SchedulePage {
               });
             }
             if (this.today.getDate() === day.getDate() && this.today.getMonth() === day.getMonth()) {
-              let oDay = { day: day, events: oEvents, selected: true };
+              let oDay = { day: day, events: oEvents};
               weekDay.push(oDay);
               this.selectedDay = oDay;
             } else {
-              weekDay.push({ day: day, events: oEvents, selected: false });
+              weekDay.push({ day: day, events: oEvents });
             }
             dayCount++;
           } else {
@@ -158,10 +159,15 @@ export class SchedulePage {
   selectDate(day) {
     this.selectedDate = day.day;
     console.log(day);
-    this.navCtrl.push(SchedulePage, {today: day.day}, {animate: false});
+
+    this.navCtrl.insert(this.navCtrl.length() - 1, SchedulePage, {today: day.day}).then( () => {
+      this.navCtrl.pop({animate: false});
+    });
+
   }
 
   createEvent(day) {
-    
+    day.day = this.today;
+    console.log(day);
   }
 }

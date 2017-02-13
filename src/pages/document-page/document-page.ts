@@ -23,6 +23,9 @@ export class DocumentPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, postService: PostService) {
     this.posts = postService.getPosts();
+    this.posts.subscribe(list => {
+      console.log(list);
+    })
   }
 
   ionViewDidLoad() {

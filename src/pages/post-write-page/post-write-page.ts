@@ -27,13 +27,15 @@ export class PostWritePage {
   title: string;
   body: string;
   simpleMde: any;
-  user;
+  user: User;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public postService: PostService,
               private af: AngularFire,
-              public auth: FirebaseAuth) {}
+              public auth: FirebaseAuth) {
+                this.user = new User();
+              }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PostWritePagePage');
@@ -41,15 +43,21 @@ export class PostWritePage {
   }
 
   setUser() {
+    let current = this;
     this.af.auth.subscribe(auth => {
-      this.user = auth.uid;
-      console.log(this.user);
-      // this.af.database.object('/users/'+this.user.uid);
-    })
+      this.af.database.object('/users/' + auth.uid).subscribe(info => {
+        this.user.uid = info.uid;
+        this.user.name = info.name;
+        console.log(info.name);
+        console.log(info.uid);
+      });
+    });
     
   }
 
   onWritePost() {
+    console.log(this.user);
+    
     if (!this.title || !this.body) {
       alert('제목과 내용을 입력해주세요.');
       return;
@@ -58,6 +66,7 @@ export class PostWritePage {
     .then(() => {
       alert("작성 완료");
     this.navCtrl.push(DocumentPage, null, {animate: false});
-    })
+  })
+  
   }
 }

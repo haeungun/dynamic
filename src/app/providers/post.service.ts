@@ -10,17 +10,10 @@ export class PostService {
     private behaviorSubject: BehaviorSubject<Post[]> = new BehaviorSubject<Post[]>(null);
 
     constructor(private af: AngularFire) {
-        this.af.database.list('/posts', {
-            query: {
-                orderByChild: 'createDate'
-            }
-        }).subscribe(post => {
-            this.behaviorSubject.next(post);
-        })
     }
 
     getPosts() {
-        return this.af.database.list('/posts', {
+        return this.af.database.list('/posts',{
             query: {
                 orderByChild: 'createDate'
             }
@@ -66,8 +59,8 @@ export class PostService {
     }
 
     writePost(title, body, user) {
-        return this.af.database.object('/posts/')
-                .set({
+        return this.af.database.list('/posts/')
+                .push({
                     "author": user.name,
                     "uid": user.uid,
                     "createDate": firebase.database.ServerValue.TIMESTAMP,

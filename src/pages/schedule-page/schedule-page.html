@@ -41,7 +41,7 @@
     </ion-row>
   </ion-grid>
   <ion-input type="text" class="schedule-input" placeholder="일정을 입력하세요."></ion-input>
-  <button ion-button color="dark" class="schedule-input-button" (click)="createEvent()">일정추가</button>
+  <button ion-button color="dark" class="schedule-input-button" (click)="createEvent(day)">일정추가</button>
   <button ion-button color="light">일정삭제</button>
   <ion-list no-lines class="schedule-list" *ngFor="let event of events">
     <ion-item>{{ day.event }}</ion-item>

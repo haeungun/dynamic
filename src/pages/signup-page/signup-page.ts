@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 
-import { AngularFireModule, FirebaseAuth, AuthProviders, AuthMethods,AngularFire, FirebaseListObservable } from 'angularfire2';
+import { FirebaseAuth, AuthProviders, AngularFire } from 'angularfire2';
 
 import { LoginPage } from '../login-page/login-page';
-import { User } from '../../app/model/user.model';
 
 /*
   Generated class for the SignupPage page.

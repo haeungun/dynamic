@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 
-import { AngularFireModule, FirebaseAuth, AuthProviders, AuthMethods, FirebaseListObservable } from 'angularfire2';
+import { AngularFire, FirebaseAuth, AuthProviders, AuthMethods } from 'angularfire2';
 
-import { User } from '../../app/model/user.model';
 import { MainPage } from '../main-page/main-page';
 import { SignUpPage } from '../signup-page/signup-page';
 
@@ -23,17 +22,23 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public auth: FirebaseAuth, 
-              private alertCtrl: AlertController) {}
+              private auth: FirebaseAuth, 
+              private alertCtrl: AlertController,
+              private af: AngularFire) {
+                this.af.auth.subscribe(auth => {
+                  if(auth) {
+                    this.navCtrl.setRoot(MainPage);
+                  }
+                });
+              }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPagePage');
   }
 
   loginUser(event){
-    // console.log("login");
-    this.switchPage();
-    /*
+    //this.switchPage();
+    
     this.auth.login(this.user, {
       provider: AuthProviders.Password,
       method: AuthMethods.Password
@@ -42,7 +47,7 @@ export class LoginPage {
     }).catch((error) => {
       this.showError(error);
     })
-    */
+    
   }
 
   showVerse() {
