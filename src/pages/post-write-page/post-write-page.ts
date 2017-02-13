@@ -65,7 +65,7 @@ export class PostWritePage {
     this.postService.writePost(this.title, this.body, this.user)
     .then(() => {
       alert("작성 완료");
-    this.navCtrl.push(DocumentPage, null, {animate: false});
+      this.navCtrl.pop();
   })
   
   }

@@ -17,7 +17,7 @@
   <button ion-button block color="dark" (click)="switchWritePage()">작성하기</button>
   <ion-list>
     <ion-card *ngFor="let post of posts | async">
-      <div (click)="showPost(post)">
+      <div (click)="showPostDetail(post)">
         <ion-card-content>
           <ion-card-title>
             <b>{{post.title}}</b> by {{post.author}}
@@ -27,7 +27,7 @@
       </div>
       <ion-row>
         <ion-col>
-          <button ion-button icon-left clear small>
+          <button ion-button icon-left clear small (click)="addLike()">
             <ion-icon name="thumbs-up"></ion-icon>
             <div>{{post.likeCount}} Likes</div>
           </button>

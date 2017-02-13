@@ -5,6 +5,7 @@ import { FirebaseListObservable } from 'angularfire2';
 import { PostService } from '../../app/providers/post.service';
 
 import { PostWritePage } from '../post-write-page/post-write-page';
+import { PostDetailPage } from '../post-detail-page/post-detail-page';
 
 /*
   Generated class for the DocumentPage page.
@@ -32,8 +33,8 @@ export class DocumentPage {
     console.log('ionViewDidLoad DocumentPagePage');
   }
 
-  showPost(post) {
-
+  showPostDetail(post) {
+    this.navCtrl.push(PostDetailPage, null, {animate: false});
   }
 
   switchWritePage() {

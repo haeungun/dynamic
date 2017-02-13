@@ -11,6 +11,7 @@ import { SchedulePage } from '../pages/schedule-page/schedule-page';
 import { NoticePage } from '../pages/notice-page/notice-page';
 import { PhotoPage } from '../pages/photo-page/photo-page';
 import { StatPage } from '../pages/stat-page/stat-page';
+import { PostDetailPage } from '../pages/post-detail-page/post-detail-page';
 import { AttendDetailPage } from '../pages/attend-detail-page/attend-detail-page';
 
 import { AngularFireModule } from 'angularfire2';
@@ -38,6 +39,7 @@ export const firebaseConfig = {
     NoticePage,
     PhotoPage,
     StatPage,
+    PostDetailPage,
     AttendDetailPage
   ],
   imports: [
@@ -58,6 +60,7 @@ export const firebaseConfig = {
     NoticePage,
     PhotoPage,
     StatPage,
+    PostDetailPage,
     AttendDetailPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
