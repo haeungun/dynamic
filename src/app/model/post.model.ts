@@ -5,4 +5,6 @@ export class Post {
     likeCount;
     likes;
     createDate;
+
+    constructor() {}
 }

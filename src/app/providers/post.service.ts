@@ -9,15 +9,14 @@ import { User } from '../model/user.model';
 export class PostService {
     private behaviorSubject: BehaviorSubject<Post[]> = new BehaviorSubject<Post[]>(null);
 
-    constructor(private af: AngularFire) {
-    }
+    constructor(private af: AngularFire) {}
 
     getPosts() {
         return this.af.database.list('/posts',{
-            query: {
-                orderByChild: 'createDate'
-            }
-        }).map((array) => array.reverse()) as FirebaseListObservable<any[]>;
+                query: {
+                    orderByChild: 'createDate'
+                }
+                }).map((array) => array.reverse()) as FirebaseListObservable<any[]>;
     }
 
     getPost(postKey) {
@@ -30,22 +29,22 @@ export class PostService {
 
     getPrevPost(postKey) {
         return this.af.database.list('posts', {
-            query: {
-                orderByKey: true,
-                stsrtAt: postKey,
-                limitToFirst: 2
-            }
-        }).map(posts => posts[1])
+                query: {
+                    orderByKey: true,
+                    stsrtAt: postKey,
+                    limitToFirst: 2
+                }
+                }).map(posts => posts[1])
     }
 
     getNextPost(postKey) {
         return this.af.database.list('posts', {
-            query: {
-                orderByKey: true,
-                endAt: postKey,
-                limitToLast: 2
-            }
-        }).map(posts => posts[0])
+                query: {
+                    orderByKey: true,
+                    endAt: postKey,
+                    limitToLast: 2
+                }
+                }).map(posts => posts[0])
     }
 
     writeComment(postKey, text, user) {

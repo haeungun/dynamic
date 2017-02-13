@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Document</ion-title>
+    <ion-title>간증문</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -20,7 +20,9 @@
       <div (click)="showPostDetail(post)">
         <ion-card-content>
           <ion-card-title>
+            <div class="card-title">
             <b>{{post.title}}</b> by {{post.author}}
+            </div>
           </ion-card-title>
           {{post.body}} ...
         </ion-card-content>

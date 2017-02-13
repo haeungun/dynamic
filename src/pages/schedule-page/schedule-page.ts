@@ -1,7 +1,11 @@
 import { Component, Input, Renderer, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { FirebaseListObservable } from 'angularfire2';
 
 import { MainPage } from '../main-page/main-page';
+
+import { Schedule } from '../../app/model/schedule.model';
+import { ScheduleService } from '../../app/providers/schedule.service';
 
 /*
   Generated class for the SchedulePage page.
@@ -12,7 +16,8 @@ import { MainPage } from '../main-page/main-page';
 
 @Component({
   selector: 'page-schedule-page',
-  templateUrl: 'schedule-page.html'
+  templateUrl: 'schedule-page.html',
+  providers: [ScheduleService]
 })
 
 export class SchedulePage {
@@ -22,7 +27,8 @@ export class SchedulePage {
   currentSlide = 0;
 
   @Input() 
-  events = new Array<any>();
+  schedule: string;
+  events: FirebaseListObservable<any>;
   month: Array<number>;
   current: Date;
   today: Date;
@@ -32,18 +38,21 @@ export class SchedulePage {
   selectedDay: any;
   selectedDate: Date;
   
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-      this.today = navParams.get("today");
-      this.current = new Date();
-      this.selectedDate = new Date();
-      
-  }
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              private service: ScheduleService) {
+                this.today = navParams.get("today");
+                this.current = new Date();
+                this.selectedDate = new Date();
+                this.events = service.getEvents(this.today);
+                this.events.subscribe(list => {
+                  console.log(list);
+                })
+            }
 
   ionViewDidLoad() {
     this.current.setTime(this.today.getTime());
     this.monthRender(this.today.toISOString());
-    console.log('ionViewDidLoad SchedulePagePage');
-
   }
 
   isToday(day) {
@@ -96,22 +105,12 @@ export class SchedulePage {
           if (dayCount < lastDay.getDate()) {
             var day = new Date();
             day.setTime(firstDay.getTime() + (dayCount * 24 * 3600000));
-            let oEvents: any;
-            if (this.events) {
-              oEvents = this.events.filter(event => {
-              let eventDate = new Date(event.start);
-              console.log(eventDate.getDate(), day.getDate());
-              return eventDate.getDate() === day.getDate()
-                     && eventDate.getMonth() === day.getMonth()
-                     && eventDate.getFullYear() === day.getFullYear();
-              });
-            }
             if (this.today.getDate() === day.getDate() && this.today.getMonth() === day.getMonth()) {
-              let oDay = { day: day, events: oEvents};
+              let oDay = { day: day };
               weekDay.push(oDay);
               this.selectedDay = oDay;
             } else {
-              weekDay.push({ day: day, events: oEvents });
+              weekDay.push({ day: day });
             }
             dayCount++;
           } else {
@@ -159,15 +158,17 @@ export class SchedulePage {
   selectDate(day) {
     this.selectedDate = day.day;
     console.log(day);
-
     this.navCtrl.insert(this.navCtrl.length() - 1, SchedulePage, {today: day.day}).then( () => {
       this.navCtrl.pop({animate: false});
     });
-
   }
 
-  createEvent(day) {
-    day.day = this.today;
-    console.log(day);
+  addEvent(today) {
+    this.service.createEvent(today, this.schedule);
   }
+
+  showEventList(today) {
+    this.service.getEvents(today);
+  }
+
 }

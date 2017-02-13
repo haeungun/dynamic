@@ -6,9 +6,10 @@ page-schedule-page {
     color: #585D5A;
     padding-left: 3vh;
     padding-right: 3vh; 
+    padding-bottom: 2vh;
 }      
 
-.calendar_title {
+.calendar-title {
     font-size: calc(1em + 1vmin);
     font-weight: bold;
     color: #585D5A;
@@ -61,15 +62,12 @@ page-schedule-page {
     color: #FFFFFF;
 }
 
-.schedule-list {
-    padding-top: 3vh; 
-    padding-left: 3vh;
-    color: #585D5A;
-    font-size: calc(0.75em + 1vmin);
+.schedule-input {
 }
 
-.schedule-input {
+.schedule-input-text {
     padding-left: 5%;
+    padding-bottom: 3vh;
     width: 65%;
     float: left;
 }
