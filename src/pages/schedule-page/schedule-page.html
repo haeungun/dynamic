@@ -46,7 +46,14 @@
   </div>
   <ion-list *ngFor="let event of events | async">
     <ion-card>
-      <ion-card-content><b>{{ event.event }}</b> by {{ event.auth }}</ion-card-content>
+      <ion-card-content>
+        <b>{{ event.event }}</b> by {{ event.auth }}
+        <ion-buttons end>
+          <button (click)="removeEvent(today, event.event)">
+          <ion-icon name="close-circle"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-card-content>
     </ion-card>
   </ion-list>
 

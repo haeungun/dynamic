@@ -62,9 +62,6 @@ page-schedule-page {
     color: #FFFFFF;
 }
 
-.schedule-input {
-}
-
 .schedule-input-text {
     padding-left: 5%;
     padding-bottom: 3vh;
@@ -75,4 +72,8 @@ page-schedule-page {
 .schedule-input-button {
     width: 30%;
     float: left;
+}
+
+.schedule-icon {
+    align-self: right;
 }

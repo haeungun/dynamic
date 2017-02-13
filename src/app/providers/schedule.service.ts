@@ -34,9 +34,13 @@ export class ScheduleService {
 
     deleteEvent(date, event) {
         let formatDate = this.dateFormat(date);
-        return this.af.database.list('/schedules/' + formatDate, {
-
-        }).remove();
+        return this.af.database.list('/schedules/' + formatDate).subscribe(list => {
+            list.forEach(ev => {
+                if (ev.event === event) {
+                    console.log(ev);
+                }  
+            })
+        })
     }
 
     dateFormat(day) {

@@ -1,5 +1,5 @@
 import { Component, Input, Renderer, ViewChild, ElementRef } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { FirebaseListObservable } from 'angularfire2';
 
 import { MainPage } from '../main-page/main-page';
@@ -27,7 +27,7 @@ export class SchedulePage {
   currentSlide = 0;
 
   @Input() 
-  schedule: string;
+  schedule = new String();
   events: FirebaseListObservable<any>;
   month: Array<number>;
   current: Date;
@@ -40,6 +40,7 @@ export class SchedulePage {
   
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
+              private alertCtrl: AlertController,
               private service: ScheduleService) {
                 this.today = navParams.get("today");
                 this.current = new Date();
@@ -164,11 +165,21 @@ export class SchedulePage {
   }
 
   addEvent(today) {
-    this.service.createEvent(today, this.schedule);
+    console.log(this.schedule.length + '');
+    if (this.schedule.length > 0) {
+      this.service.createEvent(today, this.schedule);
+    } else {
+      let prompt = this.alertCtrl.create({
+        subTitle: "일정을 입력하세요.",
+        buttons: ['OK']
+      });
+      prompt.present();
+    }
+    
   }
 
-  showEventList(today) {
-    this.service.getEvents(today);
+  removeEvent(today, event) {
+    console.log("remove call!!");
+    this.service.deleteEvent(today, event);
   }
-
 }

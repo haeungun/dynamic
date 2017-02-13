@@ -20,11 +20,11 @@ export class PostService {
     }
 
     getPost(postKey) {
-        return this.af.database.object('/posts/${postKey}');
+        return this.af.database.object('/posts/' +postKey);
     }
 
     getComments(postKey) {
-        return this.af.database.list('/post-comments/${postKey}')
+        return this.af.database.list('/post-comments/' + postKey);
     }
 
     getPrevPost(postKey) {
@@ -48,7 +48,7 @@ export class PostService {
     }
 
     writeComment(postKey, text, user) {
-        return this.af.database.list('/post-comments/${postKey}')
+        return this.af.database.list('/post-comments/' + postKey)
                 .push({
                     author: user.name,
                     text: text,
