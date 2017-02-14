@@ -1,8 +1,6 @@
-import { Component, Input, Renderer, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { FirebaseListObservable } from 'angularfire2';
-
-import { MainPage } from '../main-page/main-page';
 
 import { Schedule } from '../../app/model/schedule.model';
 import { ScheduleService } from '../../app/providers/schedule.service';
@@ -167,19 +165,17 @@ export class SchedulePage {
   addEvent(today) {
     console.log(this.schedule.length + '');
     if (this.schedule.length > 0) {
-      this.service.createEvent(today, this.schedule);
+      this.service.createEvent(today, this.schedule).then(_ => this.schedule = "");
     } else {
       let prompt = this.alertCtrl.create({
-        subTitle: "일정을 입력하세요.",
+        subTitle: '일정을 입력하세요.',
         buttons: ['OK']
       });
       prompt.present();
     }
-    
   }
 
-  removeEvent(today, event) {
-    console.log("remove call!!");
-    this.service.deleteEvent(today, event);
+  removeEvent(event, today) {
+    this.service.deleteEvent(event.$key, today);
   }
 }

@@ -47,12 +47,14 @@
   <ion-list *ngFor="let event of events | async">
     <ion-card>
       <ion-card-content>
-        <b>{{ event.event }}</b> by {{ event.auth }}
-        <ion-buttons end>
-          <button (click)="removeEvent(today, event.event)">
-          <ion-icon name="close-circle"></ion-icon>
-          </button>
-        </ion-buttons>
+        <ion-row>
+          <ion-col width-90>
+            <b>{{ event.event }}</b> by {{ event.auth }}
+          </ion-col>
+          <ion-col width-10 (click)="removeEvent(event, today)">
+            <ion-icon name="close"></ion-icon>
+        </ion-col>
+        </ion-row>
       </ion-card-content>
     </ion-card>
   </ion-list>

@@ -13,6 +13,38 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding >
+
+  <ion-card>
+    <ion-card-header>  
+      <h2><b>{{ post.title }}</b></h2>
+    </ion-card-header>
+    <ion-card-content>
+      {{ post.body }}
+    </ion-card-content>
+  </ion-card>
+  <ion-row>
+    <ion-col>
+      <button ion-button icon-left clear small (click)="addLike()">           
+        <ion-icon name="thumbs-up"></ion-icon>
+          <div>{{ post.likeCount }} Likes</div>
+      </button>
+    </ion-col>
+    <ion-col center text-right>
+      <ion-note>
+      {{ post.createDate | date: "yyyy-MM-dd" }}
+      </ion-note>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-input class="comment-input" placeholder="댓글 입력하기 .. " [(ngModel)]="comment"></ion-input>
+    </ion-col>
+    <ion-col> 
+      <button class="comment-button" ion-button icon-only color="dark" (click)="addComment()">
+        <ion-icon name="text"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
 
 </ion-content>

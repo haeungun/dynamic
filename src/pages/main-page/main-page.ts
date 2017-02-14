@@ -20,6 +20,7 @@ import { VerseService } from '../../app/providers/verse.service';
   templateUrl: 'main-page.html',
   providers: [ VerseService ]
 })
+
 export class MainPage {
 
   verse;
@@ -32,8 +33,6 @@ export class MainPage {
     this.service.getVerse().subscribe(v => {
       this.verse = v.val();
     });
-    console.log(this.verse);
-    console.log('ionViewDidLoad MainPagePage');
   }
 
   switchDocumentPage() {

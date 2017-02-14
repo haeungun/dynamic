@@ -6,7 +6,7 @@ import { Schedule } from '../model/schedule.model';
 
 @Injectable()
 export class ScheduleService {
-    private behaviorSubject: BehaviorSubject<Schedule[]> = new BehaviorSubject<Schedule[]>(null);
+    
     auth;
 
     constructor(private af: AngularFire) {
@@ -32,15 +32,9 @@ export class ScheduleService {
                 .push(schedule);
     }
 
-    deleteEvent(date, event) {
+    deleteEvent(key, date) {
         let formatDate = this.dateFormat(date);
-        return this.af.database.list('/schedules/' + formatDate).subscribe(list => {
-            list.forEach(ev => {
-                if (ev.event === event) {
-                    console.log(ev);
-                }  
-            })
-        })
+        this.af.database.list('/schedules/' + formatDate).remove(key);
     }
 
     dateFormat(day) {

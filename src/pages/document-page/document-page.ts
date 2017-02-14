@@ -22,19 +22,16 @@ export class DocumentPage {
 
   posts: FirebaseListObservable<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, postService: PostService) {
-    this.posts = postService.getPosts();
-    this.posts.subscribe(list => {
-      console.log(list);
-    })
-  }
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              private postService: PostService) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DocumentPagePage');
+    this.posts = this.postService.getPosts();
   }
 
   showPostDetail(post) {
-    this.navCtrl.push(PostDetailPage, null, {animate: false});
+    this.navCtrl.push(PostDetailPage, {postKey: post.$key}, {animate: false});
   }
 
   switchWritePage() {

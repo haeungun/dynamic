@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Post } from '../model/post.model';
-import { User } from '../model/user.model';
 
 @Injectable()
 export class PostService {
@@ -12,19 +11,27 @@ export class PostService {
     constructor(private af: AngularFire) {}
 
     getPosts() {
-        return this.af.database.list('/posts',{
+        return this.af.database.list('/posts', {
                 query: {
                     orderByChild: 'createDate'
                 }
                 }).map((array) => array.reverse()) as FirebaseListObservable<any[]>;
     }
 
-    getPost(postKey) {
-        return this.af.database.object('/posts/' +postKey);
+    getPostByKey(postKey) {
+        let post = new Post();
+        this.af.database.object('/posts/' + postKey).subscribe(list => {
+            post.title = list.title;
+            post.body = list.body;
+            post.author = list.author;
+            post.createDate = list.createDate;
+            post.likeCount = list.likeCount;
+        });
+        return post;
     }
 
     getComments(postKey) {
-        return this.af.database.list('/post-comments/' + postKey);
+        return this.af.database.list('/posts/' + postKey + '/comments/');
     }
 
     getPrevPost(postKey) {
@@ -48,11 +55,11 @@ export class PostService {
     }
 
     writeComment(postKey, text, user) {
-        return this.af.database.list('/post-comments/' + postKey)
+        console.log(postKey);
+        return this.af.database.list('/posts/' + postKey + '/comments/')
                 .push({
-                    author: user.name,
+                    auth: user,
                     text: text,
-                    uid: user.uid,
                     createDate: firebase.database.ServerValue.TIMESTAMP
                 });
     }

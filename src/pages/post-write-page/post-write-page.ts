@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { FirebaseAuth, AngularFire,FirebaseObjectObservable } from "angularfire2";
 
@@ -31,7 +31,8 @@ export class PostWritePage {
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public postService: PostService,
+              private alertCtrl: AlertController,
+              private postService: PostService,
               private af: AngularFire,
               public auth: FirebaseAuth) {
                 this.user = new User();
@@ -48,25 +49,28 @@ export class PostWritePage {
       this.af.database.object('/users/' + auth.uid).subscribe(info => {
         this.user.uid = info.uid;
         this.user.name = info.name;
-        console.log(info.name);
-        console.log(info.uid);
       });
     });
     
   }
 
   onWritePost() {
-    console.log(this.user);
-    
     if (!this.title || !this.body) {
-      alert('제목과 내용을 입력해주세요.');
+      let prompt = this.alertCtrl.create({
+        subTitle: '제목과 내용을 입력해주세요.',
+        buttons: ['OK']
+      });
+      prompt.present();
       return;
     } 
     this.postService.writePost(this.title, this.body, this.user)
-    .then(() => {
-      alert("작성 완료");
-      this.navCtrl.pop();
-  })
-  
+      .then(() => {
+        let prompt = this.alertCtrl.create({
+          subTitle: '작성이 완료되었습니다.',
+          buttons: ['OK']
+        });
+        prompt.present();
+        this.navCtrl.pop();
+      })
   }
 }
