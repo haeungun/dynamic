@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
-import { FirebaseListObservable } from 'angularfire2';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 import { Schedule } from '../../app/model/schedule.model';
 import { ScheduleService } from '../../app/providers/schedule.service';
+import { UserService } from '../../app/providers/user.service';
 
 /*
   Generated class for the SchedulePage page.
@@ -15,7 +16,7 @@ import { ScheduleService } from '../../app/providers/schedule.service';
 @Component({
   selector: 'page-schedule-page',
   templateUrl: 'schedule-page.html',
-  providers: [ScheduleService]
+  providers: [ ScheduleService, UserService ]
 })
 
 export class SchedulePage {
@@ -38,15 +39,14 @@ export class SchedulePage {
   
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
+              public af: AngularFire,
               private alertCtrl: AlertController,
-              private service: ScheduleService) {
+              private scheduleService: ScheduleService,
+              private userService: UserService) {
                 this.today = navParams.get("today");
                 this.current = new Date();
                 this.selectedDate = new Date();
-                this.events = service.getEvents(this.today);
-                this.events.subscribe(list => {
-                  console.log(list);
-                })
+                this.events = scheduleService.getEvents(this.today);
             }
 
   ionViewDidLoad() {
@@ -55,8 +55,8 @@ export class SchedulePage {
   }
 
   isToday(day) {
-    if (this.today.getDate() === day.day.getDate() && 
-        this.today.getMonth() === day.day.getMonth()) {
+    if (this.today.getDate() === day.getDate() && 
+        this.today.getMonth() === day.getMonth()) {
       return true;      
     } else {
       return false;        
@@ -64,7 +64,7 @@ export class SchedulePage {
   }
 
   diffMonth(day) {
-    if (this.current.getMonth() !== day.day.getMonth()) {
+    if (this.current.getMonth() !== day.getMonth()) {
       return true;
     } else {
       return false;
@@ -72,19 +72,23 @@ export class SchedulePage {
   }
 
   toDate(day) {
-    return day.day.getDate();
+    return day.getDate();
   }
 
   monthRender(date: string) {
+    console.log("DATE: " + date);
+    let sDate = new Date(date);
+    this.today = sDate;
     var month = new Array();
     var firstDay = new Date(date);
+    this.today = firstDay;
     firstDay.setDate(1);
     var firstDayNextMonth = new Date(date);        
-    if (firstDay.getMonth() < 11) {
+    if (firstDay.getMonth() < 10) {
       firstDayNextMonth.setMonth(firstDay.getMonth() + 1);
       firstDayNextMonth.setDate(1);
     } else {
-      firstDayNextMonth.setMonth(1);
+      firstDayNextMonth.setMonth(0);
       firstDayNextMonth.setDate(1);
     }
     var lastDay = new Date(date);
@@ -99,17 +103,17 @@ export class SchedulePage {
           // previous month date
           var day = new Date();
           day.setTime(firstDay.getTime() - ((iw - j) * 24 * 3600000));
-          weekDay.push({ day: day });
+          weekDay.push(day);
         } else {
           if (dayCount < lastDay.getDate()) {
             var day = new Date();
             day.setTime(firstDay.getTime() + (dayCount * 24 * 3600000));
             if (this.today.getDate() === day.getDate() && this.today.getMonth() === day.getMonth()) {
-              let oDay = { day: day };
+              let oDay = day;
               weekDay.push(oDay);
               this.selectedDay = oDay;
             } else {
-              weekDay.push({ day: day });
+              weekDay.push(day);
             }
             dayCount++;
           } else {
@@ -117,7 +121,7 @@ export class SchedulePage {
             dayCount++;
             var day = new Date();
             day.setTime(lastDay.getTime() + ((dayCount - lastDay.getDate()) * 24 * 3600000));
-            weekDay.push({ day: day });
+            weekDay.push(day);
           }
         }
       }
@@ -129,15 +133,15 @@ export class SchedulePage {
   previousMonth() {
     let previous = new Date();
     let currentMonth = this.current.getMonth();
-    if (currentMonth > 1) {
-      previous.setMonth(currentMonth - 1);        
+    if (currentMonth > 0) {
+      previous.setMonth(currentMonth - 1);     
     } else {
-      previous.setMonth(12);
+      previous.setMonth(11);
       previous.setFullYear(this.current.getFullYear() - 1);
     }
     this.current = new Date();
     this.current.setTime(previous.getTime());
-    this.monthRender(this.current.toISOString());    
+    this.monthRender(this.current.toISOString());
   }
 
   nextMonth() {
@@ -146,7 +150,7 @@ export class SchedulePage {
     if (currentMonth < 11) {
       next.setMonth(currentMonth + 1);
     } else {
-      next.setMonth(1);
+      next.setMonth(0);
       next.setFullYear(this.current.getFullYear() + 1);
     }
     this.current = new Date();
@@ -155,17 +159,27 @@ export class SchedulePage {
   }
 
   selectDate(day) {
-    this.selectedDate = day.day;
     console.log(day);
-    this.navCtrl.insert(this.navCtrl.length() - 1, SchedulePage, {today: day.day}).then( () => {
+    this.selectedDate = day;
+    this.navCtrl.insert(this.navCtrl.length() - 1, SchedulePage, {today: day}).then( () => {
       this.navCtrl.pop({animate: false});
     });
   }
 
   addEvent(today) {
-    console.log(this.schedule.length + '');
+    // Check access right.
+    // If user is student, he can't add event.
+    let role = this.userService.getUserRole();
+    if (role === 's') {
+      let prompt = this.alertCtrl.create({
+        subTitle: '접근 권한이 없습니다!',
+        buttons: ['OK']
+      })
+      prompt.present();
+      return;
+    }
     if (this.schedule.length > 0) {
-      this.service.createEvent(today, this.schedule).then(_ => this.schedule = "");
+      this.scheduleService.createEvent(today, this.schedule).then(_ => this.schedule = "");
     } else {
       let prompt = this.alertCtrl.create({
         subTitle: '일정을 입력하세요.',
@@ -176,6 +190,16 @@ export class SchedulePage {
   }
 
   removeEvent(event, today) {
-    this.service.deleteEvent(event.$key, today);
+    let role = this.userService.getUserRole();
+    if (role === 's') {
+      let prompt = this.alertCtrl.create({
+        subTitle: '접근 권한이 없습니다!',
+        buttons: ['OK']
+      })
+      prompt.present();
+      return;
+    }
+    this.scheduleService.deleteEvent(event.$key, today);
   }
+
 }

@@ -23,11 +23,6 @@
     </ion-item>
   
     <ion-item>
-      <ion-label color="primary" stacked>Your Birthday</ion-label>
-      <ion-input type="text" name="birth" [(ngModel)]="user.birth" placeholder="ex) 931125"></ion-input>
-    </ion-item>
-
-    <ion-item>
       <ion-label color="primary" stacked>Your E-mail</ion-label>
       <ion-input type="email" name="email" [(ngModel)]="user.email" placeholder="ex) songchon@church.com"></ion-input>
     </ion-item>
@@ -43,21 +38,63 @@
     </ion-item>
 
     <ion-item>
-      <ion-label color="primary">성별</ion-label>
-      <ion-select>
-        <ion-option>남자</ion-option>
-        <ion-option>여자</ion-option>
+      <ion-label color="primary" stacked>Your Telephone</ion-label>
+      <ion-input type="number" name="tel" [(ngModel)]="user.tel" placeholder="'-'을 제외하고 숫자만 입력하세요."></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Birthday</ion-label>
+      <ion-select placeholder="YEAR" [(ngModel)]="user.birth.year">
+        <ion-option *ngFor="let year of years">{{ year }}</ion-option>
+      </ion-select>
+      <ion-select placeholder="MONTH" [(ngModel)]="user.birth.month">
+        <ion-option *ngFor="let month of months">{{ month }}</ion-option>
+      </ion-select>
+      <ion-select placeholder="DAY" [(ngModel)]="user.birth.day">
+        <ion-option *ngFor="let day of daies">{{ day }}</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary">Role</ion-label>
-      <ion-select>
-        <ion-option>학생</ion-option>
-        <ion-option>교사</ion-option>
+      <ion-select [(ngModel)]="user.role">
+        <ion-option value="s">학생</ion-option>
+        <ion-option value="t">교사</ion-option>
       </ion-select>
     </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">성별</ion-label>
+      <ion-select [(ngModel)]="user.sex">
+        <ion-option value="m">남자</ion-option>
+        <ion-option value="f">여자</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <div *ngIf="user.role == 's'">
+    <ion-item>
+      <ion-label color="primary">학교</ion-label>
+      <ion-select [(ngModel)]="user.school">
+        <ion-option value="매봉">매봉중</ion-option>
+        <ion-option value="법동">법동중</ion-option>
+        <ion-option value="송촌">송촌중</ion-option>
+        <ion-option value="연합">연합중</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">학년</ion-label>
+      <ion-select [(ngModel)]="user.grade">
+        <ion-option value="1">1</ion-option>
+        <ion-option value="2">2</ion-option>
+        <ion-option value="3">3</ion-option>
+      </ion-select>
+    </ion-item>
+    </div>
+
   </ion-list>
+
+
 
   <button ion-button block color="dark" (click)="registerUser()">Submit</button>
 

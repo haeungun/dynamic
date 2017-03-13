@@ -9,8 +9,12 @@ export class StudentService {
 
     constructor(public af: AngularFire) {}
 
-    creatStudent(school, name, sex, tel) {
-        let student = new Student(name, sex, tel);
+    creatStudent(name, school, sex, tel) {
+        let student = new Student(name, school, sex, tel);
         return this.af.database.list('/students/' + school).push(student);
+    }
+
+    deleteStudent() {
+
     }
 }

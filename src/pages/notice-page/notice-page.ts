@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { FirebaseListObservable } from 'angularfire2';
+
+import { NoticeService } from '../../app/providers/notice.service';
+
 /*
   Generated class for the NoticePage page.
 
@@ -13,10 +17,19 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class NoticePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  notices: FirebaseListObservable<any>;
+
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              private noticeService: NoticeService) {}
 
   ionViewDidLoad() {
+    this.notices = this.noticeService.getNotices();
     console.log('ionViewDidLoad NoticePagePage');
   }
 
+  switchWritePage() {
+    console.log("페이지 이동!");
+    //this.navCtrl.push();
+  }
 }

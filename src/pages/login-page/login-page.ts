@@ -33,12 +33,10 @@ export class LoginPage {
               }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPagePage');
+    // console.log('ionViewDidLoad LoginPagePage');
   }
 
-  loginUser(event){
-    //this.switchPage();
-    
+  loginUser(){
     this.auth.login(this.user, {
       provider: AuthProviders.Password,
       method: AuthMethods.Password
@@ -48,9 +46,6 @@ export class LoginPage {
       this.showError(error);
     })
     
-  }
-
-  showVerse() {
   }
 
   switchPage() {

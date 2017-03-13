@@ -27,7 +27,7 @@
     <ion-col>
       <button ion-button icon-left clear small (click)="addLike()">           
         <ion-icon name="thumbs-up"></ion-icon>
-          <div>{{ post.likeCount }} Likes</div>
+          <div>{{ (likes | async)?.length }} Likes</div>
       </button>
     </ion-col>
     <ion-col center text-right>
@@ -46,5 +46,13 @@
       </button>
     </ion-col>
   </ion-row>
+
+  <div class="comment" style="padding-top: 5%;">
+    <div *ngFor="let comment of comments | async">
+      <ion-item icon-right style="width: 100%; " (click)="deleteComment()">
+        <b>{{ comment.auth }}</b><br> {{ comment.text }}
+      </ion-item>
+    </div>
+  </div>
 
 </ion-content>

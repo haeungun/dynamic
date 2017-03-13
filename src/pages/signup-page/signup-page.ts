@@ -17,28 +17,48 @@ import { LoginPage } from '../login-page/login-page';
 })
 
 export class SignUpPage {
-
-  user = { email: '', password:'', name: '', birth: '', uid: '', tel:'', role: '', class: ''};
+  years: string[] = [];
+  months: string[] = [];
+  daies: string[] = [];
+  user = { email: '', 
+           password:'', 
+           name: '', 
+           birth: { year: '', month: '', day: '' }, 
+           uid: '',
+           sex: '',
+           tel:'', 
+           role: '', 
+           school: '',
+           grade: ''};
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public auth: FirebaseAuth, 
               private alertCtrl: AlertController,
-              private af: AngularFire) {}
+              private af: AngularFire) {
+              }
 
   ionViewDidLoad() {
+    this.setYear(this.years);
+    this.setMonth(this.months);
+    this.setDate(this.daies);
     console.log('ionViewDidLoad SignupPagePage');
   }
-
+  
   registerUser() {
     this.auth.createUser(this.user).then((authData) => {
       this.user.uid = authData.uid;
       console.log(this.user);
       let users = this.af.database.object('/users/' + authData.uid);
-      users.set({"name": this.user.name, 
+      users.set({"email": this.user.email,
+                 "name": this.user.name, 
                  "birth": this.user.birth, 
                  "tel": this.user.tel,
-                 "uid": this.user.uid});
+                 "uid": this.user.uid,
+                 "role": this.user.role,
+                 "sex": this.user.sex,
+                 "school": this.user.school,
+                 "grade": this.user.grade});
 
       let prompt=this.alertCtrl.create({
         title: 'Success',
@@ -61,4 +81,21 @@ export class SignUpPage {
     prompt.present();
   }
 
+  setYear(year) {
+    for (let i = 2010; i > 1949; i --) {
+      year.push(i);
+    }
+  }
+
+  setMonth(month) {
+    for (let i = 1; i < 13; i ++) {
+      month.push(i);
+    }
+  }
+
+  setDate(day) {
+    for (let i = 1; i < 32; i ++) {
+      day.push(i);
+    }
+  }
 }

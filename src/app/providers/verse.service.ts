@@ -7,8 +7,8 @@ export class VerseService {
     constructor(private af: AngularFire) {}
 
     getVerse() {
+        // get between  0 and 10
         let number = Math.floor(Math.random() * 11);
         return this.af.database.object('/verse/' + number, {preserveSnapshot: true});
-        // get between  0 and 10
     }
 }

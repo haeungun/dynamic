@@ -1,18 +1,25 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+
 import { LoginPage } from '../pages/login-page/login-page';
 import { SignUpPage} from '../pages/signup-page/signup-page';
 import { MainPage} from '../pages/main-page/main-page';
-import { DocumentPage } from '../pages/document-page/document-page';
+
+import { PostPage } from '../pages/post-page/post-page';
 import { PostWritePage } from '../pages/post-write-page/post-write-page';
+import { PostDetailPage } from '../pages/post-detail-page/post-detail-page';
+
 import { AttendancePage } from '../pages/attendance-page/attendance-page';
-import { SchedulePage } from '../pages/schedule-page/schedule-page';
+import { AttendDetailPage } from '../pages/attend-detail-page/attend-detail-page';
+
 import { NoticePage } from '../pages/notice-page/notice-page';
+import { NoticeWritePage } from '../pages/notice-write-page/notice-write-page';
+
+import { SchedulePage } from '../pages/schedule-page/schedule-page';
 import { PhotoPage } from '../pages/photo-page/photo-page';
 import { StatPage } from '../pages/stat-page/stat-page';
-import { PostDetailPage } from '../pages/post-detail-page/post-detail-page';
-import { AttendDetailPage } from '../pages/attend-detail-page/attend-detail-page';
+
 
 import { AngularFireModule } from 'angularfire2';
 
@@ -32,7 +39,7 @@ export const firebaseConfig = {
     LoginPage,
     SignUpPage,
     MainPage,
-    DocumentPage,
+    PostPage,
     PostWritePage,
     AttendancePage,
     SchedulePage,
@@ -53,7 +60,7 @@ export const firebaseConfig = {
     LoginPage,
     SignUpPage,
     MainPage,
-    DocumentPage,
+    PostPage,
     PostWritePage,
     AttendancePage,
     SchedulePage,

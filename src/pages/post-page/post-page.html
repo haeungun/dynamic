@@ -33,22 +33,22 @@
         <ion-card-content>
           <ion-card-title>
             <div class="card-title">
-            <b>{{post.title}}</b> by {{post.author}}
+            <b>{{ post.title }}</b> by {{ post.author }}
             </div>
           </ion-card-title>
-          {{post.body}} ...
+          {{ post.body.substring(0, 23) }} ...
         </ion-card-content>
       </div>
       <ion-row>
         <ion-col>
           <button ion-button icon-left clear small (click)="addLike()">
             <ion-icon name="thumbs-up"></ion-icon>
-            <div>{{post.likeCount}} Likes</div>
+            <div>{{ post.likedUser.length }} Likes</div>
           </button>
         </ion-col>
         <ion-col center text-center>
           <ion-note>
-            {{post.createDate | date: "yyyy-MM-dd"}}
+            {{ post.createDate | date: "yyyy-MM-dd" }}
           </ion-note>
         </ion-col>
       </ion-row>

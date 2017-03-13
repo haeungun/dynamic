@@ -27,4 +27,11 @@ export class AttendDetailPage {
     console.log('Add!');
   }
 
+  removeStudent() {
+
+  }
+
+  checkedStudent() {
+    //
+  }
 }

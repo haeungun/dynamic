@@ -1,7 +1,8 @@
 export class Student {
     name;
-    tel;
+    school;
     sex;
+    tel;
 
-    constructor(name, sex, tel) {}
+    constructor(name, school, sex, tel) {}
 }

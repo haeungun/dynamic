@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { AngularFire } from 'angularfire2';
 
-import { DocumentPage } from '../document-page/document-page';
+import { PostPage } from '../post-page/post-page';
 import { AttendancePage } from '../attendance-page/attendance-page';
 import { SchedulePage } from '../schedule-page/schedule-page';
 import { NoticePage } from '../notice-page/notice-page';
 import { PhotoPage } from '../photo-page/photo-page';
+import { LoginPage } from '../login-page/login-page';
 
 import { VerseService } from '../../app/providers/verse.service';
 
@@ -27,7 +29,14 @@ export class MainPage {
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
-              private service: VerseService) {}
+              private service: VerseService,
+              private af: AngularFire) {
+                this.af.auth.subscribe(auth => {
+                  if(!auth) {
+                    this.navCtrl.setRoot(LoginPage);
+                  }
+                });
+              }
 
   ionViewDidLoad() {
     this.service.getVerse().subscribe(v => {
@@ -36,7 +45,7 @@ export class MainPage {
   }
 
   switchDocumentPage() {
-    this.navCtrl.push(DocumentPage, null, {animate: false});
+    this.navCtrl.push(PostPage, null, {animate: false});
   }
 
   switchAttendancePage() {
@@ -54,5 +63,9 @@ export class MainPage {
 
   switchPhotoPage() {
     this.navCtrl.push(PhotoPage, null, {animate: false});
+  }
+
+  logout() {
+    this.af.auth.logout();
   }
 }

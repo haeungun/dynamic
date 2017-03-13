@@ -14,12 +14,12 @@ import { PostDetailPage } from '../post-detail-page/post-detail-page';
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-document-page',
-  templateUrl: 'document-page.html',
+  selector: 'page-post-page',
+  templateUrl: 'post-page.html',
   providers: [ PostService ]
 })
-export class DocumentPage {
-
+export class PostPage {
+  
   posts: FirebaseListObservable<any>;
 
   constructor(public navCtrl: NavController, 
@@ -30,6 +30,7 @@ export class DocumentPage {
     this.posts = this.postService.getPosts();
   }
 
+  
   showPostDetail(post) {
     this.navCtrl.push(PostDetailPage, {postKey: post.$key}, {animate: false});
   }

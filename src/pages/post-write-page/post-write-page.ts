@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 
-import { FirebaseAuth, AngularFire,FirebaseObjectObservable } from "angularfire2";
+import { FirebaseAuth, AngularFire,FirebaseObjectObservable } from 'angularfire2';
 
-import { PostService } from "../../app/providers/post.service";
+import { PostService } from '../../app/providers/post.service';
+import { UserService } from '../../app/providers/user.service';
 
 import { DocumentPage } from '../document-page/document-page';
-import { Post } from "../../app/model/post.model";
-import { User } from "../../app/model/user.model";
+import { Post } from '../../app/model/post.model';
+import { User } from '../../app/model/user.model';
 /*
   Generated class for the PostWritePage page.
 
@@ -33,6 +34,7 @@ export class PostWritePage {
               public navParams: NavParams,
               private alertCtrl: AlertController,
               private postService: PostService,
+              private userService: UserService,
               private af: AngularFire,
               public auth: FirebaseAuth) {
                 this.user = new User();
@@ -40,9 +42,11 @@ export class PostWritePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PostWritePagePage');
-    this.setUser();
+    this.user.name = this.userService.getUserName();
+    this.user.uid = this.userService.getUserUid();
+    // this.setUser();
   }
-
+  /*
   setUser() {
     let current = this;
     this.af.auth.subscribe(auth => {
@@ -53,7 +57,7 @@ export class PostWritePage {
     });
     
   }
-
+  */
   onWritePost() {
     if (!this.title || !this.body) {
       let prompt = this.alertCtrl.create({

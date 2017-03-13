@@ -1,0 +1,5 @@
+export class MyInfo {
+
+    constructor() {}
+
+}

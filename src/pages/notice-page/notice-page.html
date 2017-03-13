@@ -7,12 +7,26 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>notice-page</ion-title>
+    <ion-title>공지사항</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <button ion-button color="dark" (click)="switchWritePage()">작성하기</button>
+  <ion-list>
+    <ion-card *ngFor="let notice of notices | async">
+      <div>
+        <ion-card-content>
+          <ion-card-title>
+            <div class="card-title">
+              <b>{{ notice.title}}</b> by {{ notice.author }}
+            </div>
+          </ion-card-title>
+          {{ notice.body.substring(0, 23) }} ...
+        </ion-card-content>
+      </div>
+    </ion-card>
+  </ion-list>
 </ion-content>
